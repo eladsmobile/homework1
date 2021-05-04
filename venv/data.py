@@ -1,21 +1,41 @@
 
 import pandas
+class data1():
+    def __init__(self, path):
+        self.df = pandas.read_csv(path)
+        self.data = self.df.to_dict(orient="list")
+
+    def get_data(self):
+        return self.data
+
+    def get_all_districts(self):
+        return self.data["denominazione_region"]
+
+    def set_districts_data(self, districts):
+        tempdata=self.get_all_districts()
+        lendist = len(tempdata)
+        removedd =[]
+        indexx=0
+        while (indexx <lendist):
+            if tempdata[indexx] not in districts:
+                print( "hi")
+                removedd.append(indexx)
+            indexx+=1
+        self.df=self.df.drop(removedd)
+        self.data = self.df.to_dict(orient="list")
 
 
-def load_data(path, features):
-    """
-    loads data from source
-    :param path:
-    :param features:
-    :return:
-    """
+
+
+
+
+def load_data( path):
     df = pandas.read_csv(path)
-    data = df.to_dict(orient="list")
-    my_data = {}
-    for feat in features.split(", "):
-        my_data[feat] = data[feat]
-    return my_data
+    self.data = df.to_dict(orient="list")
+    return data
 
+def get_all_districts(self):
+    self.data
 
 def filter_by_feature(data, feature, values):
     """
